@@ -39,6 +39,11 @@ public class Estudiante {
         this.cal3 = m;
     }
     
+    public double calcularPromedio() {       
+        double prom = (cal1 + cal2 + cal3) / 3;
+        return prom;       
+    }
+     
     public String obtenerNombre() {
         return nombre;
     }
@@ -62,13 +67,15 @@ public class Estudiante {
     @Override
     public String toString() {
         
+        calcularPromedio();
+        
         String cadena = String.format("%s %s\n"
                 + "Calificaciones:\n"
                 + "%.2f\n"
                 + "%.2f\n"
                 + "%.2f\n"
-                + "Promedio: ?\n",
-                nombre, apellido, cal1, cal2, cal3);
+                + "Promedio: %.2f\n",
+                nombre, apellido, cal1, cal2, cal3, calcularPromedio());
         
         return cadena;
     }
