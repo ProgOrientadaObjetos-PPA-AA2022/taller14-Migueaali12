@@ -38,7 +38,7 @@ public class Estudiante {
     public void establecerCal3(double m) {
         this.cal3 = m;
     }
-
+    
     public String obtenerNombre() {
         return nombre;
     }
@@ -58,16 +58,16 @@ public class Estudiante {
     public double obtenerCal3() {
         return cal3;
     }
-    
+
     @Override
     public String toString() {
         
-        String cadena = String.format("Estudiante\n"
-                + "Nombre: %s\n"
-                + "Apellido: %s\n"
-                + "Calificacion 1: %.2f\n"
-                + "Calificacion 2: %.2f\n"
-                + "Calificacion 3: %.2f\n",
+        String cadena = String.format("%s %s\n"
+                + "Calificaciones:\n"
+                + "%.2f\n"
+                + "%.2f\n"
+                + "%.2f\n"
+                + "Promedio: ?\n",
                 nombre, apellido, cal1, cal2, cal3);
         
         return cadena;

@@ -24,7 +24,7 @@ public class Enlace {
 
         try {  
             // db parameters  
-            String url = "jdbc:sqlite:bd/trabajador.bd";  
+            String url = "jdbc:sqlite:bd/base001.base";  
             // create a connection to the database  
             conn = DriverManager.getConnection(url);  
             // System.out.println(conn.isClosed());
@@ -46,10 +46,11 @@ public class Enlace {
             establecerConexion();
             Statement statement = obtenerConexion().createStatement();
             String data = String.format("INSERT INTO estudiante (nombre,"
-                    + "apellido, califiacion1, califiacion2, califiacion3)"
-                    + "values ('%s', '%s', '%.2f', '%.2f', '%.2f')", estudiante.obtenerNombre(),
-                    estudiante.obtenerApellido(), estudiante.obtenerCal1()), 
-                    estudiante.obtenerSueldo(), estudiante.obtenerMesSueldo());
+                    + "apellido, calificacion1, calificacion2, calificacion3)"
+                    + "values ('%s', '%s', '%.2f', '%.2f', '%.2f')", 
+                    estudiante.obtenerNombre(),
+                    estudiante.obtenerApellido(), estudiante.obtenerCal1(),
+                    estudiante.obtenerCal2(), estudiante.obtenerCal3());
             statement.executeUpdate(data);
             obtenerConexion().close();
         } catch (SQLException e) {  
@@ -59,24 +60,24 @@ public class Enlace {
         }  
     }
     
-    public ArrayList<Trabajador> obtenerDataTrabajador() {  
-        ArrayList<Trabajador> lista = new ArrayList<>();
+    public ArrayList<Estudiante> obtenerDataEstudiante() {  
+        ArrayList<Estudiante> lista = new ArrayList<>();
         try{  
             establecerConexion();
             Statement statement = obtenerConexion().createStatement();
-            String data = "Select * from Trabajador;";
+            String data = "Select * from estudiante ;";
             
             ResultSet rs = statement.executeQuery(data);
             while(rs.next()){
-                Trabajador miTrabajador = new Trabajador(rs.getString("Cedula"),
-                rs.getString("Nombres"), rs.getString("Correo"), 
-                rs.getDouble("Sueldo"), rs.getString("MesSueldo"));
-                lista.add(miTrabajador);
+                Estudiante miEstudiante = new Estudiante(rs.getString("nombre"),
+                rs.getString("apellido"), rs.getDouble("calificacion1"), 
+                rs.getDouble("calificacion2"), rs.getDouble("calificacion3"));
+                lista.add(miEstudiante);
             }
             
             obtenerConexion().close();
         } catch (SQLException e) {  
-             System.out.println("Exception: insertarCiudad");
+             System.out.println("Exception: insertarEstudiante");
              System.out.println(e.getMessage());  
              
         }  
