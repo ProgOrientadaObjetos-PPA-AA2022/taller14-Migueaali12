@@ -1,14 +1,9 @@
 
 package problema01;
 
-import paquete01.Enlace;
-
-
 public class Principal2 {
     
     public static void main(String[] args) {
-        
-        
         
         Enlace c = new Enlace();
         
